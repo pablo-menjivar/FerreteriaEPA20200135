@@ -6,8 +6,8 @@ import customersModel from "../models/Customers.js";
 // una base de datos y se necesita tiempo para hacer las operaciones
 // CREATE (POST)
 customersController.postCustomers = async (req, res) => {
-  const { name, lastname, birthday, email, password, phoneNumber, DUI, isVerified } = req.body;
-  const newCustomer = new customersModel({ name, lastname, birthday, email, password, phoneNumber, DUI, isVerified });
+  const { name, lastName, birthday, email, password, phoneNumber, DUI, isVerified } = req.body;
+  const newCustomer = new customersModel({ name, lastName, birthday, email, password, phoneNumber, DUI, isVerified });
 
   await newCustomer.save();
   res.json({ message: "Cliente guardado" });
@@ -19,8 +19,8 @@ customersController.getCustomers = async (req, res) => {
 };
 // UPDATE (PUT)
 customersController.putCustomers = async (req, res) => {
-  const { name, lastname, birthday, email, password, phoneNumber, DUI, isVerified } = req.body;
-  const updatedCustomer = await customersModel.findByIdAndUpdate(req.params.id, { name, lastname, birthday, email, password, phoneNumber, DUI, isVerified }, { new: true });
+  const { name, lastName, birthday, email, password, phoneNumber, DUI, isVerified } = req.body;
+  const updatedCustomer = await customersModel.findByIdAndUpdate(req.params.id, { name, lastName, birthday, email, password, phoneNumber, DUI, isVerified }, { new: true });
   res.json({ message: "Cliente actualizado" });
 };
 // DELETE (DELETE)

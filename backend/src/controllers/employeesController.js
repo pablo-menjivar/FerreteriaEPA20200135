@@ -6,8 +6,8 @@ import employeesModel from "../models/Employees.js";
 // una base de datos y se necesita tiempo para hacer las operaciones
 // CREATE (POST)
 employeesController.postEmployees = async (req, res) => {
-  const { name, lastname, birthday, email, address, hireDate, password, phoneNumber, DUI, isssNumber, isVerified } = req.body;
-  const newEmployee = new employeesModel({ name, lastname, birthday, email, address, hireDate, password, phoneNumber, DUI, isssNumber, isVerified });
+  const { name, lastName, birthday, email, address, hireDate, password, phoneNumber, DUI, isssNumber, isVerified } = req.body;
+  const newEmployee = new employeesModel({ name, lastName, birthday, email, address, hireDate, password, phoneNumber, DUI, isssNumber, isVerified });
 
   await newEmployee.save();
   res.json({ message: "Empleado guardado" });
@@ -19,8 +19,8 @@ employeesController.getEmployees = async (req, res) => {
 };
 // UPDATE (PUT)
 employeesController.putEmployees = async (req, res) => {
-  const { name, lastname, birthday, email, address, hireDate, password, phoneNumber, DUI, isssNumber, isVerified } = req.body;
-  const updatedEmployee = await employeesModel.findByIdAndUpdate(req.params.id, { name, lastname, birthday, email, address, hireDate, password, phoneNumber, DUI, isssNumber, isVerified }, { new: true });
+  const { name, lastName, birthday, email, address, hireDate, password, phoneNumber, DUI, isssNumber, isVerified } = req.body;
+  const updatedEmployee = await employeesModel.findByIdAndUpdate(req.params.id, { name, lastName, birthday, email, address, hireDate, password, phoneNumber, DUI, isssNumber, isVerified }, { new: true });
   res.json({ message: "Empleado actualizado" });
 };
 // DELETE (DELETE)
