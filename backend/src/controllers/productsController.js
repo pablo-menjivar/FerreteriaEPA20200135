@@ -5,7 +5,7 @@ import productsModel from "../models/Products.js";
 // Al parecer todas las funciones son asincronas, esto puede deberse a que se esta trabajando con 
 // una base de datos y se necesita tiempo para hacer las operaciones
 // CREATE (POST)
-productsController.createProducts = async (req, res) => {
+productsController.postProducts = async (req, res) => {
   const { name, description, price, stock } = req.body;
   const newProduct = new productsModel({ name, description, price, stock });
 
@@ -18,7 +18,7 @@ productsController.getProducts = async (req, res) => {
   res.json(products);
 };
 // UPDATE (PUT)
-productsController.updateProducts = async (req, res) => {
+productsController.putProducts = async (req, res) => {
   const { name, description, price, stock } = req.body;
   const updatedProduct = await productsModel.findByIdAndUpdate(req.params.id, { name, description, price, stock }, { new: true });
   res.json({ message: "producto actualizado" });

@@ -5,7 +5,7 @@ import customersModel from "../models/Customers.js";
 // Al parecer todas las funciones son asincronas, esto puede deberse a que se esta trabajando con 
 // una base de datos y se necesita tiempo para hacer las operaciones
 // CREATE (POST)
-customersController.createCustomers = async (req, res) => {
+customersController.postCustomers = async (req, res) => {
   const { name, lastname, birthday, email, password, phoneNumber, DUI, isVerified } = req.body;
   const newCustomer = new customersModel({ name, lastname, birthday, email, password, phoneNumber, DUI, isVerified });
 
@@ -18,7 +18,7 @@ customersController.getCustomers = async (req, res) => {
   res.json(customers);
 };
 // UPDATE (PUT)
-customersController.updateCustomers = async (req, res) => {
+customersController.putCustomers = async (req, res) => {
   const { name, lastname, birthday, email, password, phoneNumber, DUI, isVerified } = req.body;
   const updatedCustomer = await customersModel.findByIdAndUpdate(req.params.id, { name, lastname, birthday, email, password, phoneNumber, DUI, isVerified }, { new: true });
   res.json({ message: "Cliente actualizado" });

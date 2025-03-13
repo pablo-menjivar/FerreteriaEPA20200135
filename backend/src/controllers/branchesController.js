@@ -5,7 +5,7 @@ import branchesModel from "../models/Branches.js";
 // Al parecer todas las funciones son asincronas, esto puede deberse a que se esta trabajando con
 // una base de datos y se necesita tiempo para hacer las operaciones
 // CREATE (POST)
-branchesController.createBranches = async (req, res) => {
+branchesController.postBranches = async (req, res) => {
   const { name, address, phoneNumber, schedule } = req.body;
   const newBranch = new branchesModel({ name, address, phoneNumber, schedule });
 
@@ -18,7 +18,7 @@ branchesController.getBranches = async (req, res) => {
   res.json(branches);
 };
 // UPDATE (PUT)
-branchesController.updateBranches = async (req, res) => {
+branchesController.putBranches = async (req, res) => {
   const { name, address, phoneNumber, schedule } = req.body;
   const updatedBranch = await branchesModel.findByIdAndUpdate(req.params.id, { name, address, phoneNumber, schedule }, { new: true });
   res.json({ message: "Sucursal actualizada" });

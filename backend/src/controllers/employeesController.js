@@ -5,7 +5,7 @@ import employeesModel from "../models/Employees.js";
 // Al parecer todas las funciones son asincronas, esto puede deberse a que se esta trabajando con
 // una base de datos y se necesita tiempo para hacer las operaciones
 // CREATE (POST)
-employeesController.createEmployees = async (req, res) => {
+employeesController.postEmployees = async (req, res) => {
   const { name, lastname, birthday, email, address, hireDate, password, phoneNumber, DUI, isssNumber, isVerified } = req.body;
   const newEmployee = new employeesModel({ name, lastname, birthday, email, address, hireDate, password, phoneNumber, DUI, isssNumber, isVerified });
 
@@ -18,7 +18,7 @@ employeesController.getEmployees = async (req, res) => {
   res.json(employees);
 };
 // UPDATE (PUT)
-employeesController.updateEmployees = async (req, res) => {
+employeesController.putEmployees = async (req, res) => {
   const { name, lastname, birthday, email, address, hireDate, password, phoneNumber, DUI, isssNumber, isVerified } = req.body;
   const updatedEmployee = await employeesModel.findByIdAndUpdate(req.params.id, { name, lastname, birthday, email, address, hireDate, password, phoneNumber, DUI, isssNumber, isVerified }, { new: true });
   res.json({ message: "Empleado actualizado" });
