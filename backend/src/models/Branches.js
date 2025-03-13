@@ -3,7 +3,7 @@
     {
       "name": "Downtown Store",
       "address": "789 Central Blvd, City",
-      "telephone": "+1777888999",
+      "phoneNumber": "1777-8999",
       "schedule": "Mon-Fri 9:00-18:00, Sat 10:00-14:00"
     }
 ]
@@ -15,7 +15,7 @@ const branchesSchema = new Schema(
     {
         name: { type: String, require: true },
         address: { type: String, require: true },
-        telephone: { type: String, require: true },
+        phoneNumber: { type: String, require: true },
         schedule: { type: String, require: true }
     },
     {

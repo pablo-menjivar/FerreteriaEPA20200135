@@ -2,6 +2,8 @@
 const productsController = {};
 // Importo el modelo de productos
 import productsModel from "../models/Products.js";
+// Al parecer todas las funciones son asincronas, esto puede deberse a que se esta trabajando con 
+// una base de datos y se necesita tiempo para hacer las operaciones
 // CREATE (POST)
 productsController.createProducts = async (req, res) => {
   const { name, description, price, stock } = req.body;

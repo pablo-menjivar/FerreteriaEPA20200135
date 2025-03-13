@@ -8,8 +8,8 @@
       "address": "123 Main St, City",
       "hireDate": "2020-01-15",
       "password": "hashedpassword789",
-      "telephone": "+1555666777",
-      "dui": "45678912-3",
+      "phoneNumber": "+1555666777",
+      "DUI": "45678912-3",
       "isssNumber": "ISSS001234",
       "isVerified": true
     }
@@ -26,8 +26,8 @@ const employeesSchema = new Schema(
         address: { type: String, require: true },
         hireDate: { type: Date, require: true },
         password: { type: String, require: true },
-        telephone: { type: String, require: true },
-        dui: { type: String, require: true },
+        phoneNumber: { type: String, require: true },
+        DUI: { type: String, require: true },
         isssNumber: { type: String, require: true },
         isVerified: { type: Boolean, require: true }
     },
