@@ -3,7 +3,7 @@ import app from "./app.js";
 // Importo el archivo database.js
 import "./database.js";
 // Importo el archivo config
-import {config} from "./src/utils/config.js";
+import { config } from "./src/utils/config.js";
 // Creo una función asincrona para que el servidor corra en el puerto 5000
 async function main() {
   app.listen(config.server.PORT);

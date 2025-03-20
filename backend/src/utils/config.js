@@ -4,9 +4,9 @@ dotenv.config();
 // Exporta la constante config
 export const config = {
   db: {
-    URI: process.env.MONGODB_URI || "mongodb://localhost:27017/ferreteriaEPA"
+    URI: process.env.DB_URI,
   },
   server: {
-    PORT: process.env.PORT || 5000
-  }
+    PORT: process.env.PORT,
+  },
 };
