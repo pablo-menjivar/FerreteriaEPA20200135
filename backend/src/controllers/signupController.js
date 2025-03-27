@@ -29,7 +29,7 @@ signupController.register = async (req, res) => {
         //TOKEN
         jsonwebtoken.sign({id: newUser._id}, config.JWT.secret, { expiresIn: config.JWT.expiresIn}, (err, token) => {
             if(err) console.log("error")
-            res.cookie("authToken")
+            res.cookie("authToken", token)
             //return res.json({message: "Error al generar el token", error: err.message});
             res.json({message: "Registro exitoso"});
             //res.json({message: "Registro exitoso", token: token});  
