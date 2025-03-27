@@ -6,9 +6,10 @@ import customersRoutes from "./src/routes/customers.js";
 import employeesRoutes from "./src/routes/employees.js";
 import branchesRoutes from "./src/routes/branches.js";
 import reviewsRoutes from "./src/routes/reviews.js";
+import signupRoutes from "./src/routes/signup.js";
 // Creo una constante que es igual a la libreria que acabo de importar y lo ejecuto
 const app = express();
-// middleware para aceptar datos desde postman
+// middleware para aceptar datos desde Postman
 app.use(express.json());
 // monta las rutas de productos en la aplicacion
 app.use("/api/products", productsRoutes);
@@ -20,5 +21,7 @@ app.use("/api/employees", employeesRoutes);
 app.use("/api/branches", branchesRoutes);
 // monta las rutas de reseñas en la aplicacion
 app.use("/api/reviews", reviewsRoutes);
+// monta las rutas del sign up en la aplicacion
+app.use("/api/signup", signupRoutes);
 // Exporto la constante para poder usar express en otros archivos
 export default app;

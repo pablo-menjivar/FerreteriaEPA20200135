@@ -1,4 +1,5 @@
 // Aqui en el controlador, irán todos los metodos (CRUD) que se utilizarán en la ruta de productos
+//Array de funciones vacías
 const productsController = {};
 // Importo el modelo de productos
 import productsModel from "../models/Products.js";

@@ -9,4 +9,8 @@ export const config = {
   server: {
     PORT: process.env.PORT,
   },
+  JWT: {
+    secret: process.env.JWT_SECRET,
+    expiresIn: process.env.JWT_EXPIRES,
+  }
 };

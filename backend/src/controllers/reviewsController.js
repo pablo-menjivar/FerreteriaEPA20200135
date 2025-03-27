@@ -1,4 +1,5 @@
 // Aquí en el controlador, irán todos los métodos (CRUD) que se utilizarán en la ruta de productos
+//Array de funciones vacías
 const reviewsController = {};
 // Importo el modelo de reseñas
 import reviewsModel from "../models/Reviews.js";

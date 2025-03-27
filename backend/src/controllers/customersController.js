@@ -1,4 +1,5 @@
 // Aquí en el controlador, irán todos los metodos (CRUD) que se utilizarán en la ruta de clientes
+//Array de funciones vacías
 const customersController = {};
 // Importo el modelo de clientes
 import customersModel from "../models/Customers.js";
