@@ -1,4 +1,5 @@
 // Aquí esta el controlador, irán todos los metodos (CRUD) que se utilizarán en la ruta de sucursales
+//Array de funciones vacías
 const branchesController = {};
 // Importo el modelo de sucursales
 import branchesModel from "../models/Branches.js";

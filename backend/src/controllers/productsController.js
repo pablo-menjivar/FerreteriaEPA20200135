@@ -1,4 +1,5 @@
 // Aqui en el controlador, irán todos los metodos (CRUD) que se utilizarán en la ruta de productos
+//Array de funciones vacías
 const productsController = {};
 // Importo el modelo de productos
 import productsModel from "../models/Products.js";
@@ -7,10 +8,10 @@ import productsModel from "../models/Products.js";
 // CREATE (POST)
 productsController.postProducts = async (req, res) => {
   const { name, description, price, stock } = req.body;
-  const newProduct = new productsModel({ name, description, price, stock });
+  const newProduct = new productsModel({ name, description, price, stock })
 
-  await newProduct.save();
-  res.json({ message: "Producto guardado" });
+  await newProduct.save()
+  res.json({ message: "Producto guardado" })
 };
 // READ (GET)
 productsController.getProducts = async (req, res) => {
@@ -30,8 +31,8 @@ productsController.deleteProducts = async (req, res) => {
 };
 // READ 1 PRODUCT BY ID
 productsController.getProduct = async (req, res) => {
-  const product = await productsModel.findById(req.params.id);
-  res.json(product);
+  const product = await productsModel.findById(req.params.id)
+  res.json(product)
 };
 // Exporto el controlador para poder usarlo en otros archivos
-export default productsController;
+export default productsController

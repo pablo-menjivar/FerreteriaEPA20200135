@@ -19,17 +19,17 @@ import { Schema, model } from "mongoose";
 // Creamos un nuevo Schema con la estructura de los empleados
 const employeesSchema = new Schema(
     {
-        name: { type: String, require: true },
-        lastName: { type: String, require: true },
-        birthday: { type: Date, require: true },
-        email: { type: String, require: true },
-        address: { type: String, require: true },
-        hireDate: { type: Date, require: true },
-        password: { type: String, require: true },
-        phoneNumber: { type: String, require: true },
-        DUI: { type: String, require: true },
-        isssNumber: { type: String, require: true },
-        isVerified: { type: Boolean, require: true }
+        name: { type: String, required: true },
+        lastName: { type: String, required: true },
+        birthday: { type: Date, required: true },
+        email: { type: String, required: true, unique: true },
+        address: { type: String, required: true },
+        hireDate: { type: Date, required: true },
+        password: { type: String, required: true, unique: true },
+        phoneNumber: { type: String, required: true },
+        DUI: { type: String, required: true },
+        issNumber: { type: String, required: true },
+        isVerified: { type: Boolean, required: true }
     },
     {
         timestamps: true,

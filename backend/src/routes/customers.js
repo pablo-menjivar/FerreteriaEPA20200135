@@ -1,9 +1,9 @@
 // Importo la libreria express
-import express from "express";
+import express from "express"
 // Creo una constante que es igual a la libreria que acabo de importar y lo ejecuto
-const router = express.Router();
+const router = express.Router()
 // Importo el controlador de clientes
-import customersController from '../controllers/customersController.js';
+import customersController from '../controllers/customersController.js'
 // Rutas que no requieren un parámetro específico
 router
   .route("/")
@@ -16,4 +16,4 @@ router
   .put(customersController.putCustomers)
   .delete(customersController.deleteCustomers)
 // Exporto el router para poder usarlo en otros archivos
-export default router;
+export default router
