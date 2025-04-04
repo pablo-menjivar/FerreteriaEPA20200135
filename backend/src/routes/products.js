@@ -1,19 +1,19 @@
 // Importo la libreria express
-import express from "express";
+import express from "express"
 // Creo una constante que es igual a la libreria que acabo de importar y lo ejecuto
-const router = express.Router();
+const router = express.Router()
 // Importo el controlador de productos
-import productsController from "../controllers/productsController.js";
+import productsController from "../controllers/productsController.js"
 // Rutas que no requieren un parámetro en específico
 router
   .route("/")
   .get(productsController.getProducts)
-  .post(productsController.postProducts);
+  .post(productsController.postProducts)
 // Rutas que utilizan el id como parametro
 router
   .route("/:id")
   .get(productsController.getProduct)
   .put(productsController.putProducts)
-  .delete(productsController.deleteProducts);
+  .delete(productsController.deleteProducts)
 // Exporto el router para poder usarlo en otros archivos
-export default router;
+export default router
