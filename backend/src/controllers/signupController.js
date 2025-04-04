@@ -43,7 +43,6 @@ signupController.registerEmployee = async (req, res) => {
         res.json({message: "Error al registrar el empleado", error: error.message})
     }
 }
-export default signupController
 // POST 2 (CREATE)
 signupController.registerCustomer = async (req, res) => {
     const {name, lastName, birthday, email, password, phoneNumber, DUI, issNumber, isVerified} = req.body
@@ -75,3 +74,4 @@ signupController.registerCustomer = async (req, res) => {
         res.json({message: "Error al registrar el cliente", error: error.message})
     }
 }
+export default signupController
