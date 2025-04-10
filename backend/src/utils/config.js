@@ -16,5 +16,9 @@ export const config = {
   CREDENTIALS: {
     email: process.env.ADMIN_EMAIL,
     password: process.env.ADMIN_PASSWORD
+  },
+  APPUSER: {
+    USER: process.env.APPUSER,
+    PASS: process.env.APPPASS
   }
 }

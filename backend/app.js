@@ -9,6 +9,8 @@ import reviewsRoutes from "./src/routes/reviews.js"
 import signupRoutes from "./src/routes/signup.js"
 import loginRoutes from "./src/routes/login.js"
 import logoutRoutes from "./src/routes/logout.js"
+import signupCustomerRoutes from "./src/routes/signupCustomer.js"
+
 //Importo todo lo de la libreria  'cookie-parser'
 import cookieParser from "cookie-parser"
 // Creo una constante que es igual a la libreria que acabo de importar y lo ejecuto
@@ -33,5 +35,7 @@ app.use("/api/signup", signupRoutes)
 app.use("/api/login", loginRoutes)
 // montas las rutas del logout en la aplicacion
 app.use("/api/logout", logoutRoutes)
+// monta las rutas del sign up del cliente en la aplicacion
+app.use("/api/signupCustomers", signupCustomerRoutes)
 // Exporto la constante para poder usar express en otros archivos
 export default app
