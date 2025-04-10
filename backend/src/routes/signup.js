@@ -6,4 +6,5 @@ const router = express.Router()
 import signupController from "../controllers/signupController.js"
 // Solo sería la ruta del Post o Create
 router.route("/").post(signupController.register)
+// Exporto el router para poder usarlo en otros archivos
 export default router

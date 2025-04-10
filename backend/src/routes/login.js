@@ -6,4 +6,5 @@ const router = express.Router()
 import loginController from "../controllers/loginController.js"
 // Solo sería la ruta del Post o Create
 router.route("/").post(loginController.login)
+// Exporto el router para poder usarlo en otros archivos
 export default router
