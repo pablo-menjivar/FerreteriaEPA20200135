@@ -6,6 +6,7 @@ import customersModel from "../models/Customers.js"
 // Nodemailer es para enviar correos y Crypto es para generar un código aleatorio
 // Jsonwebtoken es para generar un token de autenticación
 // Bcryptjs es para encriptar la contraseña
+// Crypto es para generar un código aleatorio
 // Importo la libreria 'bcryptjs'
 import bcryptjs from "bcryptjs"
 // Importo la libreria 'jsonwebtoken'
@@ -16,7 +17,7 @@ import nodemailer from 'nodemailer'
 import crypto from 'crypto'
 // Importo el archivo 'config'
 import { config } from "../utils/config.js"
-
+//Post (Create)
 signupCustomerController.registerCustomer = async (req, res) => {
     const {name, lastName, birthday, email, password, phoneNumber, DUI, isVerified} = req.body
     try {
