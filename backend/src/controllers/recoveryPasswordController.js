@@ -50,4 +50,27 @@ recoveryPasswordController.requestCode = async (req, res) => {
         console.log("error: ", err)
     }
 }
+//Verificación de código: POST (Create)
+recoveryPasswordController.verifyCode = async (req, res) => {
+    const { code } = req.body
+
+    try {
+        //Obtención del código de recuperación
+        const token = req.cookies.tokenRecoveryCode
+        //Extraer el código del token
+        const decoded = jsonwebtoken.verify(token, config.JWT.secret)
+        //Comparar con el código que el usuario escribe con el código que está guardado en el token
+        if (decoded.code !== code) {
+            res.json({message: "Código incorrecto"})
+        }
+        //TOKEN
+        const newToken = jsonwebtoken.sign({email: decoded.email, code: decoded.code, userType: decoded.userType, verified: true}, config.JWT.secret, { expiresIn: "20m"})
+        //El token se almacenará en una cookie
+        res.cookie("tokenRecoveryCode", newToken, {maxAge: 24*60*1000})
+        res.json({message: "Código de recuperación verificado"})
+    } catch (err) {
+        console.log("error: ", err)
+    }
+}
+
 export default recoveryPasswordController
