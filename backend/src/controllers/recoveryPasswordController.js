@@ -72,5 +72,4 @@ recoveryPasswordController.verifyCode = async (req, res) => {
         console.log("error: ", err)
     }
 }
-
 export default recoveryPasswordController
