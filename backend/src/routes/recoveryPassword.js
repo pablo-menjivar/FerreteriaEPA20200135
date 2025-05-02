@@ -7,5 +7,6 @@ import recoveryPasswordController from "../controllers/recoveryPasswordControlle
 // Solo sería la ruta del Post o Create
 router.route("/requestCode").post(recoveryPasswordController.requestCode)
 router.route("/verifyCode").post(recoveryPasswordController.verifyCode)
+router.route("/changePassword").post(recoveryPasswordController.changePassword)
 // Exporto el router para poder usarlo en otros archivos
 export default router

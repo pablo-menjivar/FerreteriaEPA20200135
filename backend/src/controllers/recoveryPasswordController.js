@@ -72,4 +72,38 @@ recoveryPasswordController.verifyCode = async (req, res) => {
         console.log("error: ", err)
     }
 }
+//Cambiar contraseña: POST (Create)
+recoveryPasswordController.changePassword = async (req, res) => {
+    const { newPassword } = req.body
+    try {
+        //Obtenemos el token de la cookie
+        const token = req.cookies.tokenRecoveryCode
+        //Extraer el código del token
+        const decoded = jsonwebtoken.verify(token, config.JWT.secret)
+        //Comprobar si el código fue verificado
+        if (!decoded.verified) {
+            return res.json({message: "Código no verificado"})
+        }
+        //Obteniendo el email y el tipo de usuario
+        const { email, userType } = decoded
+        //Encriptar la contraseña
+        const hashedPassword = await bcryptjs.hash(newPassword, 8)
+        //Nuevo usuario
+        let updatedUser
+        //Actualizar la contraseña del usuario
+        if (userType === "customer") {
+            updatedUser = await customersModel.findOneAndUpdate({email}, {password: hashedPassword}, {new: true})
+        } else if (userType === "employee") {
+            updatedUser = await employeesModel.findOneAndUpdate({email}, {password: hashedPassword}, {new: true})
+        } else {
+            return res.json({message: "Tipo de usuario no válido"})
+        }
+        //Eliminar la cookie
+        res.clearCookie("tokenRecoveryCode")
+        res.json({message: "Contraseña cambiada"})
+    } catch (err) {
+        console.log("error: ", err)
+    }
+}
+//Exportar el controlador
 export default recoveryPasswordController
