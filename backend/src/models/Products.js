@@ -8,7 +8,7 @@
   }
 ] */
 // Importamos Schema y model de mongoose
-import { Schema, model } from "mongoose";
+import { Schema, model } from "mongoose"
 // Creamos un nuevo Schema con la estructura de los productos
 const productsSchema = new Schema(
   {

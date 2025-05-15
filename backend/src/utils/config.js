@@ -20,5 +20,10 @@ export const config = {
   APPUSER: {
     USER: process.env.APPUSER,
     PASS: process.env.APPPASS
+  },
+  CLOUDINARY: {
+    CLOUD_NAME: process.env.CLOUD_NAME,
+    API_KEY: process.env.API_KEY,
+    API_SECRET: process.env.API_SECRET
   }
 }

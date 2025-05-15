@@ -17,7 +17,7 @@ import nodemailer from 'nodemailer'
 import crypto from 'crypto'
 // Importo el archivo 'config'
 import { config } from "../utils/config.js"
-//Post (Create)
+//Post (CREATE)
 signupCustomerController.registerCustomer = async (req, res) => {
     const {name, lastName, birthday, email, password, phoneNumber, DUI, isVerified} = req.body
     try {

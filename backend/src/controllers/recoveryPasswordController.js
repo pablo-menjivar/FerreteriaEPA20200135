@@ -50,7 +50,7 @@ recoveryPasswordController.requestCode = async (req, res) => {
         console.log("error: ", err)
     }
 }
-//Verificación de código: POST (Create)
+//Verificación de código: POST (CREATE)
 recoveryPasswordController.verifyCode = async (req, res) => {
     const { code } = req.body
 
@@ -72,7 +72,7 @@ recoveryPasswordController.verifyCode = async (req, res) => {
         console.log("error: ", err)
     }
 }
-//Cambiar contraseña: POST (Create)
+//Cambiar contraseña: POST (CREATE)
 recoveryPasswordController.changePassword = async (req, res) => {
     const { newPassword } = req.body
     try {
