@@ -43,35 +43,4 @@ signupController.registerEmployee = async (req, res) => {
         res.json({message: "Error al registrar el empleado", error: error.message})
     }
 }
-// POST 2 (CREATE)
-signupController.registerCustomer = async (req, res) => {
-    const {name, lastName, birthday, email, password, phoneNumber, DUI, issNumber, isVerified} = req.body
-
-    try {
-        //Verificación de si el cliente ya existe o no, si no, se va a registrar 2 veces😬
-        const customerExist = await customersModel.findOne({email})
-        //Si existe un cliente, entonces se va a responder con un mensaje de error
-        if(customerExist){
-            return res.json({message: "El cliente ya existe"})
-        }
-        //Encriptacion de contraseña
-        const hashedPassword = await bcryptjs.hash(password, 10)
-        //Como en los otros controladores del CRUD
-        const newUser = new customersModel({name, lastName, birthday, email, address, hireDate, password: hashedPassword, phoneNumber, DUI, issNumber, isVerified})
-        //Guardado del nuevo cliente
-        await newUser.save()
-        //TOKEN
-        jsonwebtoken.sign({id: newUser._id}, config.JWT.secret, { expiresIn: config.JWT.expiresIn}, (err, token) => {
-            if(err) console.log("error")
-            res.cookie("authToken", token)
-            //return res.json({message: "Error al generar el token", error: err.message});
-            res.json({message: "Registro exitoso"})
-            //res.json({message: "Registro exitoso", token: token});
-        })
-        res.json({message: "Cliente registrado"})
-    } catch (error) {
-        console.log("error", error)
-        res.json({message: "Error al registrar el cliente", error: error.message})
-    }
-}
 export default signupController
