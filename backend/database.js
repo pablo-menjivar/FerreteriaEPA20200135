@@ -10,13 +10,13 @@ mongoose.connect(config.db.URI);
 const connection = mongoose.connection;
 //veo si funciona
 connection.once("open", () => {
-  console.log("DB is connected");
+  console.log("Base de datos conectada");
 });
 //veo si se desconectó
 connection.on("disconnected", () => {
-  console.log("DB is disconnected");
+  console.log("La base de datos se desconectó");
 });
 //veo si hay un error
 connection.on("error", () => {
-  console.log("Error connecting to the database");
+  console.log("Error al conectarse a la base de datos");
 });
