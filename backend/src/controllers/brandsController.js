@@ -60,7 +60,7 @@ brandsController.deleteBrand = async (req, res) => {
     }
     res.json({ message: "Marca eliminada" })
 }
-// GET 1 PROVIDER BY ID
+// GET 1 BRAND BY ID
 brandsController.getBrand = async (req, res) => {
     const brand = await brandsModel.findById(req.params.id)
     res.json(brand)
