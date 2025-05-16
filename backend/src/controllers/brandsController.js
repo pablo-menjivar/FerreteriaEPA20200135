@@ -48,7 +48,7 @@ brandsController.putBrand = async (req, res) => {
         })
         imageURL = result.secure_url
     }
-    // Actualizar el proveedor en la base de datos
+    // Actualizar la marca en la base de datos
     await brandsModel.findByIdAndUpdate(req.params.id, {name, year, slogan, image: imageURL }, { new: true })
     res.json({ message: "Marca actualizada"})
 }
