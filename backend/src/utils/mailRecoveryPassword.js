@@ -1,6 +1,5 @@
 import nodemailer from 'nodemailer'
 import { config } from './config.js'
-
 //Configurar el transportador para enviar correos
 const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
