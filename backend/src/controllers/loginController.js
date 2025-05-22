@@ -24,6 +24,7 @@ loginController.login = async (req, res) => {
         if (email === config.CREDENTIALS.email && password === config.CREDENTIALS.password) {
             userType = "admin",
             userFound = {_id: "admin"}
+            console.log("Este es el tipo de usuario que esta guardando: " + userType)
         } else {
             //Para ver si es empleado o no
             userFound = await loginModel.findOne({email})
@@ -32,6 +33,7 @@ loginController.login = async (req, res) => {
             if (!userFound) {
                 userFound = await customersModel.findOne({email: "customer"})
                 userType = "customer"
+                console.log("Este es el tipo de usuario que esta guardando: " + userType)
             }
         }
         //Si el usuario DE VERDAD NO FUE ENCONTRADO se va a responder con un mensaje de error
@@ -47,7 +49,7 @@ loginController.login = async (req, res) => {
             }
         }
         //TOKEN
-        jsonwebtoken.sign({id: userFound._id}, config.JWT.secret, { expiresIn: config.JWT.expiresIn}, (err, token) => {
+        jsonwebtoken.sign({id: userFound._id, userType}, config.JWT.secret, { expiresIn: config.JWT.expiresIn}, (err, token) => {
             if(err) console.log("error")
             res.cookie("authToken", token)
             //return res.json({message: "Error al generar el token", error: err.message});

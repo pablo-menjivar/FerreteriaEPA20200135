@@ -13,6 +13,7 @@ import loginRoutes from "./src/routes/login.js"
 import logoutRoutes from "./src/routes/logout.js"
 import signupCustomerRoutes from "./src/routes/signupCustomer.js"
 import recoveryPasswordRoutes from "./src/routes/recoveryPassword.js"
+import { validateAuthToken } from "./src/middlewares/validateAuthToken.js"
 //Importo todo lo de la libreria  'cookie-parser'
 import cookieParser from "cookie-parser"
 // Creo una constante que es igual a la libreria que acabo de importar y lo ejecuto
@@ -26,17 +27,17 @@ app.use("/api/products", productsRoutes)
 // monta las rutas de clientes en la aplicacion
 app.use("/api/customers", customersRoutes)
 // monta las rutas de empleados en la aplicacion
-app.use("/api/employees", employeesRoutes)
+app.use("/api/employees", validateAuthToken(["admin", "employee"]), employeesRoutes)
 // monta las rutas de sucursales en la aplicacion
 app.use("/api/branches", branchesRoutes)
 // monta las rutas de reseñas en la aplicacion
 app.use("/api/reviews", reviewsRoutes)
 // monta las rutas de proveedores en la aplicacion
-app.use("/api/providers", providersRoutes)
+app.use("/api/providers", validateAuthToken(["admin"]), providersRoutes)
 // monta las rutas de rutas en la aplicacion
 app.use("/api/brands", brandsRoutes)
 // monta las rutas del sign up en la aplicacion
-app.use("/api/signup", signupRoutes)
+app.use("/api/signup", validateAuthToken(["admin"]), signupRoutes)
 // monta las rutas del login en la aplicacion
 app.use("/api/login", loginRoutes)
 // montas las rutas del logout en la aplicacion
@@ -45,5 +46,7 @@ app.use("/api/logout", logoutRoutes)
 app.use("/api/signupCustomers", signupCustomerRoutes)
 // monta las rutas del recuperar contraseña en la aplicacion
 app.use("/api/recoveryPassword", recoveryPasswordRoutes)
+// monta las rutas del validar el jsonwebtoken en la aplicacion
+app.use("/api/validateAuthToken", validateAuthToken)
 // Exporto la constante para poder usar express en otros archivos
 export default app
