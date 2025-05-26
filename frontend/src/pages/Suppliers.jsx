@@ -1,5 +1,5 @@
 import React from "react"
-import ListSuppliers from "../components/Suppliers/ListSuppliers.jsx"
+import ListSuppliers from "../components/Suppliers/SuppliersList.jsx"
 import FormSuppliers from "../components/Suppliers/FormSuppliers.jsx"
 import useDataSuppliers from "../components/Suppliers/hooks/useDataSuppliers.jsx"
 
@@ -7,8 +7,9 @@ const Suppliers = () => {
   const {
     activeTab, setActiveTab,
     id,
-    supplierName, setSupplierName,
-    contactInfo, setContactInfo,
+    name, setName,
+    contact, setContact,
+    phone, setPhone,
     address, setAddress,
     suppliers,
     loading,
@@ -38,7 +39,7 @@ const Suppliers = () => {
             )}
             {activeTab === "form" && (
               <div>
-                <FormSuppliers setSupplierName={setSupplierName} setContactInfo={setContactInfo} setAddress={setAddress} saveSupplier={saveSupplier} supplierName={supplierName} contactInfo={contactInfo} address={address} id={id} handleEdit={handleEdit}/>
+                <FormSuppliers setNameSuppliers={setName} setContactSuppliers={setContact} setPhoneSuppliers={setPhone} setAddressSuppliers={setAddress} saveSuppliers={saveSupplier} nameSupplier={name} contactSupplier={contact} phoneSuppliers={phone} addressSupplier={address} id={id} handleEdit={handleEdit}/>
               </div>
             )}
           </div>

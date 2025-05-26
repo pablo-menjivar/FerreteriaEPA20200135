@@ -1,5 +1,5 @@
 import React from "react"
-import ListInventory from "../components/Inventory/ListInventory.jsx"
+import ListInventory from "../components/Inventory/InventoryList.jsx"
 import FormInventory from "../components/Inventory/FormInventory.jsx"
 import useDataInventory from "../components/Inventory/hooks/useDataInventory.jsx"
 
@@ -40,7 +40,7 @@ const Inventory = () => {
             )}
             {activeTab === "form" && (
               <div>
-                <FormInventory setProductName={setProductName} setCurrentQuantity={setCurrentQuantity} setMinimumStock={setMinimumStock} setLastUpdate={setLastUpdate} saveInventory={saveInventory} productName={productName} currentQuantity={currentQuantity} minimumStock={minimumStock} lastUpdate={lastUpdate} id={id} handleEdit={handleEdit}/>
+                <FormInventory setProductNameInventory={setProductName} setCurrentQuantity={setCurrentQuantity} setMinimumStock={setMinimumStock} setLastUpdate={setLastUpdate} saveInventory={saveInventory} productName={productName} currentQuantity={currentQuantity} minimumStock={minimumStock} lastUpdate={lastUpdate} id={id} handleEdit={handleEdit}/>
               </div>
             )}
           </div>

@@ -28,7 +28,7 @@ app.use(express.json())
 // middleware para aceptar cookies en Postman
 app.use(cookieParser())
 // middleware para usar cors en el Frontend
-app.use(cors({origin: "http://localhost:5173/", credentials: true }))
+app.use(cors({origin: "http://localhost:5173", credentials: true, methods: ["GET", "POST", "PUT", "DELETE"], allowedHeaders: ["Content-Type", "Authorization"]}))
 // monta las rutas de productos en la aplicacion
 app.use("/api/products", productsRoutes)
 // monta las rutas de clientes en la aplicacion

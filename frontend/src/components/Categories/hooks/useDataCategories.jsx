@@ -6,7 +6,7 @@ const [activeTab, setActiveTab] = useState("list");
   const [id, setId] = useState("")
   const [name, setName] = useState("")
   const [description, setDescription] = useState("")
-  const [isActive, setIsActive] = useState("")
+  const [isActive, setIsActive] = useState(false)
   const [categories, setCategories] = useState([])
   const [loading, setLoading] = useState(true)
 
@@ -26,7 +26,7 @@ const [activeTab, setActiveTab] = useState("list");
     e.preventDefault()
     const newCategory = {
       name: name,
-      description,
+      description: description,
       isActive: isActive
     }
     const response = await fetch(API, {
@@ -45,7 +45,7 @@ const [activeTab, setActiveTab] = useState("list");
     fetchCategories()
     setName("")
     setDescription("")
-    setIsActive("")
+    setIsActive(false)
   }
   const deleteCategory = async (id) => {
     const response = await fetch(`${API}/${id}`, {
@@ -92,7 +92,7 @@ const [activeTab, setActiveTab] = useState("list");
       setId("")
       setDescription("")
       setName("")
-      setIsActive("")
+      setIsActive(false)
       setActiveTab("list")
       fetchCategories()
     } catch (error) {

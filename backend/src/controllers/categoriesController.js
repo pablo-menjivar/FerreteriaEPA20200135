@@ -7,8 +7,8 @@ import categoriesModel from "../models/Categories.js";
 // una base de datos y se necesita tiempo para hacer las operaciones
 // CREATE (POST)
 categoriesController.postCategories = async (req, res) => {
-    const { name, address, phoneNumber, schedule } = req.body;
-    const newCategory = new categoriesModel({ name, address, phoneNumber, schedule });
+    const { name, description, isActive } = req.body;
+    const newCategory = new categoriesModel({ name, description, isActive});
     await newCategory.save();
     res.json({ message: "Categoría guardada" });
 };
@@ -19,8 +19,8 @@ categoriesController.getCategories = async (req, res) => {
 };
 // UPDATE (PUT)
 categoriesController.putCategories = async (req, res) => {
-    const { name, address, phoneNumber, schedule } = req.body;
-    const updatedCategory = await categoriesModel.findByIdAndUpdate(req.params.id, { name, address, phoneNumber, schedule }, { new: true });
+    const { name, description, isActive } = req.body;
+    const updatedCategory = await categoriesModel.findByIdAndUpdate(req.params.id, { name, description, isActive }, { new: true });
     res.json({ message: "Categoría actualizada" });
 };
 // DELETE (DELETE)

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast"
 const useDataInventory = () => {
-const [activeTab, setActiveTab] = useState("list");
+  const [activeTab, setActiveTab] = useState("list");
   const API = "http://localhost:5000/api/inventory";
   const [id, setId] = useState("")
   const [productName, setProductName] = useState("")

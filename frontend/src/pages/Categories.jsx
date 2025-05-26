@@ -1,5 +1,5 @@
 import React from "react"
-import ListCategories from "../components/Categories/ListCategories.jsx"
+import ListCategories from "../components/Categories/CategoriesList.jsx"
 import RegisterCategory from "../components/Categories/FormCategories.jsx"
 import useDataCategories from "../components/Categories/hooks/useDataCategories.jsx"
 

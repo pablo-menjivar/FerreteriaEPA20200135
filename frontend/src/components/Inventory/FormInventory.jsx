@@ -5,7 +5,7 @@ const RegisterInventory = ({ setProductNameInventory, nameInventory, setCurrentQ
       <form className="w-full max-w-lg mx-auto mt-10 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
         <div className="mb-4">
           <label className="block text-gray-700 font-bold mb-2" htmlFor="name">Nombre Inventario</label>
-          <input type="text" name="name" value={nameInventory} onChange={(e) => setProductNameInventory(e.target.value)} className="w-full px-3 py-2 border rounded" placeholder="Categoría"/>
+          <input type="text" name="name" value={nameInventory} onChange={(e) => setProductNameInventory(e.target.value)} className="w-full px-3 py-2 border rounded" placeholder="Nombre del producto"/>
         </div>
         <div className="mb-4">
             <label className="block text-gray-700 font-bold mb-2" htmlFor="currentQuantity">Cantidad Actual</label>

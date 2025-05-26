@@ -26,10 +26,10 @@ const useDataSuppliers = () => {
   const saveSupplier = async (e) => {
     e.preventDefault();
     const newSupplier = {
-      name,
-      contact,
-      phone,
-      address
+      name: name,
+      contact: contact,
+      phone: phone,
+      address: address
     }
     const response = await fetch(API, {
       method: "POST",
@@ -41,12 +41,14 @@ const useDataSuppliers = () => {
     if (!response.ok) {
       throw new Error("Hubo un error al registrar el proveedor")
     }
+    const data = await response.json()
     toast.success("Proveedor registrado")
+    setSuppliers(data)
+    fetchSuppliers()
     setName("")
     setContact("")
     setPhone("")
     setAddress("")
-    fetchSuppliers()
   }
   const deleteSupplier = async (id) => {
     const response = await fetch(`${API}/${id}`, {
@@ -73,10 +75,10 @@ const useDataSuppliers = () => {
     e.preventDefault()
     try {
       const editSupplier = {
-        name,
-        contact,
-        phone,
-        address
+        name: name,
+        contact: contact,
+        phone: phone,
+        address: address
       }
       const response = await fetch(`${API}/${id}`, {
         method: "PUT",
@@ -107,7 +109,7 @@ const useDataSuppliers = () => {
     contact, setContact,
     phone, setPhone,
     address, setAddress,
-    suppliers,
+    suppliers, 
     loading,
     saveSupplier,
     deleteSupplier,

@@ -7,8 +7,8 @@ import inventoryModel from "../models/Inventory.js";
 // una base de datos y se necesita tiempo para hacer las operaciones
 // CREATE (POST)
 inventoryController.postInventory = async (req, res) => {
-    const { name, quantity, price } = req.body;
-    const newInventory = new inventoryModel({ name, quantity, price });
+    const { productName, currentQuantity, minimumStock, lastUpdate } = req.body;
+    const newInventory = new inventoryModel({ productName, currentQuantity, minimumStock, lastUpdate });
     await newInventory.save();
     res.json({ message: "Inventario guardado" });
 };
@@ -19,8 +19,8 @@ inventoryController.getInventory = async (req, res) => {
 };
 // UPDATE (PUT)
 inventoryController.putInventory = async (req, res) => {
-    const { name, quantity, price } = req.body;
-    const updatedInventory = await inventoryModel.findByIdAndUpdate(req.params.id, { name, quantity, price }, { new: true });
+    const { productName, currentQuantity, minimumStock, lastUpdate } = req.body;
+    const updatedInventory = await inventoryModel.findByIdAndUpdate(req.params.id, { productName, currentQuantity, minimumStock, lastUpdate }, { new: true });
     res.json({ message: "Inventario actualizado" });
 };
 // DELETE (DELETE)
