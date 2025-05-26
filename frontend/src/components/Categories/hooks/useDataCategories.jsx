@@ -104,6 +104,7 @@ const [activeTab, setActiveTab] = useState("list");
     id,
     name, setName,
     description, setDescription,
+    isActive, setIsActive,
     categories,
     loading,
     saveCategory,
