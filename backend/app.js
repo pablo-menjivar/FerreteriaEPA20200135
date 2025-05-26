@@ -11,6 +11,7 @@ import reviewsRoutes from "./src/routes/reviews.js"
 import providersRoutes from "./src/routes/providers.js"
 import brandsRoutes from "./src/routes/brands.js"
 import categoriesRoutes from "./src/routes/categories.js"
+import suppliersRoutes from "./src/routes/suppliers.js"
 import signupRoutes from "./src/routes/signup.js"
 import loginRoutes from "./src/routes/login.js"
 import logoutRoutes from "./src/routes/logout.js"
@@ -43,6 +44,8 @@ app.use("/api/providers", validateAuthToken(["admin"]), providersRoutes)
 app.use("/api/brands", brandsRoutes)
 // monta las rutas de categoría en la aplicacion
 app.use("/api/categories", categoriesRoutes)
+// monta las rutas de proveedores en la aplicacion
+app.use("/api/suppliers", suppliersRoutes)
 // monta las rutas del sign up en la aplicacion
 app.use("/api/signup", validateAuthToken(["admin"]), signupRoutes)
 // monta las rutas del login en la aplicacion
