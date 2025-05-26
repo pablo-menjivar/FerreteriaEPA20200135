@@ -1,5 +1,7 @@
 // importar todo lo de la libreria "express"
 import express from "express"
+// importar todo lo de la libreria "cors"
+import cors from "cors"
 // importar la constante que contiene el router
 import productsRoutes from "./src/routes/products.js"
 import customersRoutes from "./src/routes/customers.js"
@@ -22,6 +24,8 @@ const app = express()
 app.use(express.json())
 // middleware para aceptar cookies en Postman
 app.use(cookieParser())
+// middleware para usar cors en el Frontend
+app.use(cors({origin: "http://localhost:5173/", credentials: true }))
 // monta las rutas de productos en la aplicacion
 app.use("/api/products", productsRoutes)
 // monta las rutas de clientes en la aplicacion
