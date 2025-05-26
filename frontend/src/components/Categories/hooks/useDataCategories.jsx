@@ -36,7 +36,6 @@ const [activeTab, setActiveTab] = useState("list");
       },
       body: JSON.stringify(newCategory),
     });
-
     if (!response.ok) {
       throw new Error("Hubo un error al registrar la categoría")
     }
@@ -47,8 +46,7 @@ const [activeTab, setActiveTab] = useState("list");
     setName("")
     setDescription("")
     setIsActive("")
-  };
-
+  }
   const deleteCategory = async (id) => {
     const response = await fetch(`${API}/${id}`, {
       method: "DELETE",
