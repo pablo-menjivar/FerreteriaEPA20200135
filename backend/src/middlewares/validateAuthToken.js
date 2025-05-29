@@ -18,14 +18,14 @@ export const validateAuthToken = (allowedUserTypes = []) => {
             console.log("Este es el usuario que esta guardado en el token: " + decodedToken.userType)
             //Verifico si el tipo de usuario es permitido
             if (!allowedUserTypes.includes(decodedToken.userType)) {
-                //Si no es permitido, envío un error 403
-                return res.status(403).json({ message: "Acceso denegado" })
+                //Si no es permitido, envío un error 403, que es un error de acceso denegado
+                return res.status(403).json({ message: "Acceso denegado: Tipo de usuario no permitido" })
             }
             //Si todo es correcto, paso al siguiente middleware
             next()
         } catch (error) {
-            //Si hay un error, envío un error 500
-            res.status(500).json({ message: "Error al validar el token" })
+            //Si hay un error, envío un error 500, que es un error de error interno
+            res.status(500).json({ message: "Error al validar el token: " + error.message })
         }
     }
 }
