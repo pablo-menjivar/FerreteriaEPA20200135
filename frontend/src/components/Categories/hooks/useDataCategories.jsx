@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from "react"
 import { toast } from "react-hot-toast"
 const useDataCategories = () => {
-const [activeTab, setActiveTab] = useState("list");
-  const API = "http://localhost:5000/api/categories";
+const [activeTab, setActiveTab] = useState("list")
+  const API = "http://localhost:5000/api/categories"
   const [id, setId] = useState("")
   const [name, setName] = useState("")
   const [description, setDescription] = useState("")
