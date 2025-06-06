@@ -35,7 +35,6 @@ faqController.getFaqs = async (req, res) => {
     try {
         const faqs = await faqModel.find();
         res.status(200).json(faqs);
-        res.json(faqs); 
     } catch (error) {
         res.status(500).json({ message: "Error al obtener las preguntas: " + error.message });
     }

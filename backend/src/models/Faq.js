@@ -2,8 +2,8 @@
     "FAQ": [
       {
         "question": "¿Cómo funciona la aplicación?",
-        "answer": "La aplicación funciona de la siguiente manera:..."
-        "level": "1"
+        "answer": "La aplicación funciona de la siguiente manera:...",
+        "level": "1",
         "isActive": true
       }
     ]

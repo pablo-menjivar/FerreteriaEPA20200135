@@ -51,7 +51,7 @@ app.use("/api/suppliers", suppliersRoutes)
 // monta las rutas del inventario en la aplicacion
 app.use("/api/inventory", inventoryRoutes)
 // monta las rutas de las preguntas frecuentes en la aplicacion
-app.use("/api/faqs", faqRoutes)
+app.use("/api/faqs", faqRoutes) 
 // monta las rutas del sign up en la aplicacion
 app.use("/api/signup", validateAuthToken(["admin"]), signupRoutes)
 // monta las rutas del login en la aplicacion
