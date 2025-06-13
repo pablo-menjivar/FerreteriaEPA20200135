@@ -26,9 +26,32 @@ const employeesSchema = new Schema(
         address: { type: String, required: false },
         hireDate: { type: Date, required: false },
         password: { type: String, required: true, unique: true },
-        phoneNumber: { type: String, required: true },
-        DUI: { type: String, required: true },
-        issNumber: { type: String, required: true },
+        phoneNumber: {
+            type: String,
+            required: true,
+            // Basic phone number validation (adjust regex as needed)
+            match: /^\+?\d{8,}$/,
+        },
+        DUI: {
+            type: String,
+            required: true,
+            // Basic DUI format validation (adjust regex as needed for specific format)
+            match: /^\d{8}-\d{1}$/,
+        },
+        issNumber: {
+            type: String,
+            required: true,
+            // Basic ISSS number format validation (adjust regex as needed for specific format)
+            match: /^ISSS\d{6}$/,
+        },
+        email: {
+            type: String,
+            required: true,
+            unique: true,
+            // Basic email validation
+            match: /^\S+@\S+\.\S+$/,
+
+        },
         isVerified: { type: Boolean, required: true }
     },
     {
