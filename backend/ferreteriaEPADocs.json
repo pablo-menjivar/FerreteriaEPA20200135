@@ -1,0 +1,346 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Ferretería EPA",
+    "description": "Esta es la API de Ferretería EPA",
+    "contact": {
+      "email": "20200135@ricaldone.edu.sv"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://virtserver.swaggerhub.com/myfirstorganization-3f3/FerreteriaEPA_MERN/1.0.0",
+      "description": "SwaggerHub API Auto Mocking"
+    }
+  ],
+  "tags": [
+    {
+      "name": "admins",
+      "description": "Secured Admin-only calls"
+    },
+    {
+      "name": "developers",
+      "description": "Operations available to regular developers"
+    },
+    {
+      "name": "Products",
+      "description": "Operations to add, edit, see and delete products"
+    }
+  ],
+  "paths": {
+    "/inventory": {
+      "get": {
+        "tags": [
+          "developers"
+        ],
+        "summary": "searches inventory",
+        "description": "By passing in the appropriate options, you can search for\navailable inventory in the system\n",
+        "operationId": "searchInventory",
+        "parameters": [
+          {
+            "name": "searchString",
+            "in": "query",
+            "description": "pass an optional search string for looking up inventory",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "number of records to skip for pagination",
+            "required": false,
+            "schema": {
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "maximum number of records to return",
+            "required": false,
+            "schema": {
+              "maximum": 50,
+              "minimum": 0,
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "search results matching criteria",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InventoryItem"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "bad input parameter"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "admins"
+        ],
+        "summary": "adds an inventory item",
+        "description": "Adds an item to the system",
+        "operationId": "addInventory",
+        "requestBody": {
+          "description": "Inventory item to add",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InventoryItem"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "item created"
+          },
+          "400": {
+            "description": "invalid input, object invalid"
+          },
+          "409": {
+            "description": "an existing item already exists"
+          }
+        }
+      }
+    },
+    "/products": {
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Read a Product",
+        "operationId": "get-product",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Update a Product",
+        "operationId": "put-products",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/products_body"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Create a Product",
+        "operationId": "post-products",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/products_body_1"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Delete a product",
+        "operationId": "delete-products",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "InventoryItem": {
+        "required": [
+          "id",
+          "manufacturer",
+          "name",
+          "releaseDate"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "example": "d290f1ee-6c54-4b01-90e6-d701748f0851"
+          },
+          "name": {
+            "type": "string",
+            "example": "Widget Adapter"
+          },
+          "releaseDate": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2016-08-29T09:12:33.001Z"
+          },
+          "manufacturer": {
+            "$ref": "#/components/schemas/Manufacturer"
+          }
+        }
+      },
+      "Manufacturer": {
+        "required": [
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "ACME Corporation"
+          },
+          "homePage": {
+            "type": "string",
+            "format": "url",
+            "example": "https://www.acme-corp.com"
+          },
+          "phone": {
+            "type": "string",
+            "example": "408-867-5309"
+          }
+        }
+      },
+      "products_body": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "4kttekka2bliu"
+            }
+          },
+          "description": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "zjxratashws2k"
+            }
+          },
+          "price": {
+            "minimum": 0,
+            "exclusiveMinimum": true,
+            "type": "number",
+            "x-stoplight": {
+              "id": "91mcssuy8haq0"
+            }
+          },
+          "stock": {
+            "minimum": 0,
+            "exclusiveMinimum": true,
+            "type": "number",
+            "x-stoplight": {
+              "id": "9is70oimnlq90"
+            }
+          }
+        }
+      },
+      "products_body_1": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "vhkwqrfn3nk2z"
+            }
+          },
+          "description": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "d5fg47ftz5m4h"
+            }
+          },
+          "stock": {
+            "minimum": 0,
+            "exclusiveMinimum": true,
+            "type": "number",
+            "x-stoplight": {
+              "id": "mvubnzx7ogm2q"
+            }
+          },
+          "price": {
+            "type": "number",
+            "x-stoplight": {
+              "id": "d2idu6nrzlxbd"
+            }
+          }
+        }
+      }
+    }
+  }
+}

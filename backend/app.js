@@ -20,6 +20,9 @@ import logoutRoutes from "./src/routes/logout.js"
 import signupCustomerRoutes from "./src/routes/signupCustomer.js"
 import recoveryPasswordRoutes from "./src/routes/recoveryPassword.js"
 import { validateAuthToken } from "./src/middlewares/validateAuthToken.js"
+import swaggerUi from "swagger-ui-express"
+import fs from "fs"
+import path from "path"
 //Importo todo lo de la libreria  'cookie-parser'
 import cookieParser from "cookie-parser"
 // Creo una constante que es igual a la libreria que acabo de importar y lo ejecuto
@@ -28,6 +31,8 @@ const app = express()
 app.use(express.json())
 // middleware para aceptar cookies en Postman
 app.use(cookieParser())
+// importar el archivo .json
+const swaggerDocument = JSON.parse(fs.readFileSync(path.resolve("./ferreteriaEPADocs.json"), "utf-8"))
 // middleware para usar cors en el Frontend
 app.use(cors({origin: "http://localhost:5173", credentials: true, methods: ["GET", "POST", "PUT", "DELETE"], allowedHeaders: ["Content-Type", "Authorization"]}))
 // monta las rutas de productos en la aplicacion
@@ -64,5 +69,7 @@ app.use("/api/signupCustomers", signupCustomerRoutes)
 app.use("/api/recoveryPassword", recoveryPasswordRoutes)
 // monta las rutas del validar el jsonwebtoken en la aplicacion
 app.use("/api/validateAuthToken", validateAuthToken)
+// monta las rutas del ferreteriaEPADocs en la aplicacion
+app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 // Exporto la constante para poder usar express en otros archivos
 export default app

@@ -8,7 +8,7 @@ import { config } from "./src/utils/config.js";
 async function main() {
   app.listen(config.server.PORT);
   // Muestro un mensaje en la consola para saber que el servidor está corriendo
-  console.log("Server running");
+  console.log("Server corriendo");
 }
 // Ejecuto la función main
 main();
