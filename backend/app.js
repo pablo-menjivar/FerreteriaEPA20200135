@@ -14,6 +14,7 @@ import categoriesRoutes from "./src/routes/categories.js"
 import suppliersRoutes from "./src/routes/suppliers.js"
 import inventoryRoutes from "./src/routes/inventory.js"
 import faqRoutes from "./src/routes/faq.js"
+import salesRoutes from "./src/routes/sales.js"
 import signupRoutes from "./src/routes/signup.js"
 import loginRoutes from "./src/routes/login.js"
 import logoutRoutes from "./src/routes/logout.js"
@@ -57,6 +58,8 @@ app.use("/api/suppliers", suppliersRoutes)
 app.use("/api/inventory", inventoryRoutes)
 // monta las rutas de las preguntas frecuentes en la aplicacion
 app.use("/api/faqs", faqRoutes) 
+// monta las rutas de las ventas en la aplicacion
+app.use("/api/sales", /* validateAuthToken(["admin", "employee"]), */ salesRoutes)
 // monta las rutas del sign up en la aplicacion
 app.use("/api/signup", validateAuthToken(["admin"]), signupRoutes)
 // monta las rutas del login en la aplicacion
