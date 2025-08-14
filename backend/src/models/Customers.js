@@ -23,7 +23,9 @@ const customersSchema = new Schema(
         password: { type: String, require: true },
         phoneNumber: { type: String, require: true },
         DUI: { type: String, require: true },
-        isVerified: { type: Boolean, require: true }
+        isVerified: { type: Boolean, require: true },
+        loginAttemps: { type: Number, default: 0 },
+        timeOut: { type: Date, default: null }
     },
     {
         timestamps: true,

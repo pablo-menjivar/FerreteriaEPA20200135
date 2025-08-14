@@ -40,13 +40,34 @@ loginController.login = async (req, res) => {
         if (!userFound) {
             return res.json({message: "El usuario no existe"})
         } 
+        // Verificar si el usuario está bloqueado
+        if (userType !== "admin") {
+            if (userFound.timeOut !== null && Date.now() > userFound.timeOut) {
+                const remainingMinutes = Math.floor((userFound.timeOut - Date.now()) / 60000)
+                res.status(401).json({message: "El usuario está bloqueado", remainingMinutes: remainingMinutes})
+            }
+        }
         //Desencriptar la contraseña si el usuario no es admin
         if (userType !== "admin") {
             //Variable para almacenar el hash de la contraseña
             const isMatch = bcryptjs.compare(password, userFound.password)
             if (!isMatch) {
-                return res.json({message: "Contraseña incorrecta"})
+
+                // Si se equivoca de contraseña,, sumar 1 a los intentos fallidos
+                userFound.loginAttemps += 1
+                //Si los intentos fallidos son 3, bloquear el usuario
+                if (userFound.loginAttemps >= 3) {
+                    // Bloqueamos la cuenta con morbo
+                    userFound.timeOut = Date.now() + 3600000 * 24 //Bloquear el usuario por 24 horas
+                    await userFound.save()
+                    return res.status(403).json({message: "Contraseña incorrecta", remainingMinutes: 0})
+                }
+                return res.status(403).json({message: "Contraseña incorrecta"})
             }
+            //Limpiamos los campos
+            userFound.loginAttemps = 0
+            userFound.timeOut = null
+            await userFound.save()
         }
         //TOKEN
         jsonwebtoken.sign({id: userFound._id, userType}, config.JWT.secret, { expiresIn: config.JWT.expiresIn}, (err, token) => {
