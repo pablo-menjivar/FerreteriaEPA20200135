@@ -1,5 +1,9 @@
 // importar todo lo de la libreria "express"
 import express from "express"
+// importar limitador de solicitudes HTTP
+import { limiter } from "./src/middlewares/limitRate.js"
+// importar el contador de solicitudes
+import { requestCounter, getRequestStats, resetRequestCounter } from "./src/middlewares/requestCounter.js"
 // importar todo lo de la libreria "cors"
 import cors from "cors"
 // importar la constante que contiene el router
@@ -32,10 +36,29 @@ const app = express()
 app.use(express.json())
 // middleware para aceptar cookies en Postman
 app.use(cookieParser())
+// middleware para contar solicitudes (añadido aquí)
+app.use(requestCounter)
+// middleware para limitar solicitudes HTTP
+app.use(limiter)
 // importar el archivo .json
 const swaggerDocument = JSON.parse(fs.readFileSync(path.resolve("./ferreteriaEPADocs.json"), "utf-8"))
 // middleware para usar cors en el Frontend
 app.use(cors({origin: "http://localhost:5173", credentials: true, methods: ["GET", "POST", "PUT", "DELETE"], allowedHeaders: ["Content-Type", "Authorization"]}))
+// Ruta para ver estadísticas de solicitudes
+app.get('/api/request-stats', (req, res) => {
+    res.json({
+        success: true,
+        data: getRequestStats()
+    });
+});
+// Ruta para resetear el contador (solo para testing)
+app.post('/api/reset-request-counter', (req, res) => {
+    resetRequestCounter();
+    res.json({ 
+        success: true, 
+        message: 'Request counter reset successfully' 
+    });
+});
 // monta las rutas de productos en la aplicacion
 app.use("/api/products", productsRoutes)
 // monta las rutas de clientes en la aplicacion
